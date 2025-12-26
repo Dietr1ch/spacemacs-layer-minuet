@@ -1,0 +1,53 @@
+#+TITLE: minuet layer
+#+TAGS: layer|web service
+
+# The maximum height of the logo should be 200 pixels.
+[[img/minuet.png]]
+
+# TOC links should be GitHub style anchors.
+* Table of Contents                                        :TOC_4_gh:noexport:
+- [[#description][Description]]
+- [[#install][Install]]
+- [[#shortcuts][Shortcuts]]
+
+* Description
+This layer adds minuet support.
+
+It simply adds ~minuet~ and sets up it's global hook.
+
+
+* Install
+To use this configuration layer, add it to your =~/.spacemacs=. You will need to
+add =minuet= to the existing =dotspacemacs-configuration-layers= list in this
+file.
+
+#+begin_src elisp
+  (defun dotspacemacs/layers ()
+    dotspacemacs-configuration-layers '(
+                                        ;; SPACEMACS_DIR/private/minuet/README.org
+                                        (minuet
+                                         :variables
+                                         ;; minuet-provider 'openai-fim-compatible
+                                         ;; minuet-end-point "http://localhost:11434/v1/completions"
+                                         ;; minuet-api-key "TERM"
+                                         ;; minuet-model "qwen2.5-coder:3b"
+                                         ;; minuet-n-completions 3
+                                         ;; minuet-context-window 512
+                                         )
+                                        )
+    )
+#+end_src
+
+This will use your local [[https://ollama.com/download][Ollama]] instance.
+
+* Shortcuts
+These shortcuts become available when in evil's ~insert-mode~,
+
+| Shortcut                            | Binding                        |
+|-------------------------------------+--------------------------------|
+| ~"C-<return>"~                      | ~minuet-accept-suggestion~     |
+| ~"C-DEL"~                           | ~minuet-dismiss-suggestion~    |
+| ~"C-<tab>"~                         | ~minuet-next-suggestion~       |
+| ~"C-<iso-lefttab>"~ (~"C-S-<tab>"~) | ~#'minuet-previous-suggestion~ |
+
+It's also necessary to call ~minuet-active-mode~ on a per-buffer basis (~SPC SPC~ or ~M-x~).
