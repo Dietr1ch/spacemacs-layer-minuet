@@ -20,10 +20,15 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(spacemacs/declare-prefix "$" "AI")
+(spacemacs/declare-prefix "$m" "minuet")
+(spacemacs/set-leader-keys
+	"$mm" 'minuet-active-mode
+	"$ms" 'minuet-show-suggestion
+	"$mc" 'minuet-complete-with-minibuffer
+	)
+
 (define-key evil-insert-state-map (kbd "C-<return>") #'minuet-accept-suggestion)
 (define-key evil-insert-state-map (kbd "C-DEL") #'minuet-dismiss-suggestion)
 (define-key evil-insert-state-map (kbd "C-<tab>") #'minuet-next-suggestion)
 (define-key evil-insert-state-map (kbd "C-<iso-lefttab>") #'minuet-previous-suggestion)
-
-;; TODO: Map #'minuet-complete-with-minibuffer
-;; TODO: Map #'minuet-show-suggestion
